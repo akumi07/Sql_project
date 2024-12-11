@@ -72,3 +72,43 @@ from retail_sales
 GROUP BY category
 
 
+select AVG(age) as age
+from retail_sales
+where category = 'Beauty';
+
+
+select *
+from retail_sales
+where total_sale>=1000
+
+select category,
+        gender,
+        COUNT(*) as no_of_transsaction
+from retail_sales
+GROUP BY category,gender;
+
+SELECT 
+       *
+FROM 
+(    
+    SELECT 
+        EXTRACT(YEAR FROM sale_date) AS year,
+        EXTRACT(MONTH FROM sale_date) AS month,
+        AVG(total_sale) AS avg_sale,
+        RANK() OVER(PARTITION BY EXTRACT(YEAR FROM sale_date) ORDER BY AVG(total_sale) DESC) AS `rank`
+    FROM retail_sales
+    GROUP BY year, month
+) AS t1
+WHERE `rank` = 1;
+
+SELECT customer_id,
+       SUM(total_sale) AS st
+FROM retail_sales
+GROUP BY customer_id
+ORDER BY st DESC
+LIMIT 5;
+
+
+
+
+
