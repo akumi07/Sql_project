@@ -108,6 +108,12 @@ GROUP BY customer_id
 ORDER BY st DESC
 LIMIT 5;
 
+SELECT 
+    category,    
+    COUNT(DISTINCT customer_id) as cnt_unique_cs
+FROM retail_sales
+GROUP BY category
+
 
 
 
