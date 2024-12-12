@@ -117,4 +117,21 @@ GROUP BY category
 
 
 
+SELECT 
+    shift,
+    COUNT(*) AS total_orders    
+FROM (
+    SELECT 
+        *,
+        CASE
+            WHEN HOUR(sale_time) < 12 THEN 'Morning'
+            WHEN HOUR(sale_time) BETWEEN 12 AND 17 THEN 'Afternoon'
+            ELSE 'Evening'
+        END AS shift
+    FROM retail_sales
+) AS hourly_sale
+GROUP BY shift;
+
+
+
 
