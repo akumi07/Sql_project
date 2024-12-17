@@ -166,5 +166,7 @@ FROM retail_sales
 GROUP BY category
 
 
+SELECT * FROM retail_sales
+LIMIT 10;
 
 
